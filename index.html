@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Kitty's Day 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #fcb6c6 0%, #fce3ec 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="20" fill="rgba(255,255,255,0.1)">🎈🎂🎉🎁</text></svg>') repeat;
+            animation: float 20s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes float {
+            0% { transform: translateX(-50px) translateY(-50px); }
+            100% { transform: translateX(50px) translateY(50px); }
+        }
+        
+        .title {
+            font-size: 3.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .message-section {
+            padding: 60px 40px;
+            text-align: center;
+            background: #fff;
+        }
+        
+        .birthday-message {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gallery {
+            padding: 40px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+        
+        .gallery-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+        }
+        
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .photo-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .photo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .photo-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .photo-caption {
+            padding: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        .footer {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2rem;
+        }
+        
+        .decorative-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .balloon {
+            position: absolute;
+            font-size: 2rem;
+            animation: bounce 3s ease-in-out infinite;
+        }
+        
+        .balloon:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .balloon:nth-child(2) { top: 20%; right: 10%; animation-delay: 1s; }
+        .balloon:nth-child(3) { top: 60%; left: 3%; animation-delay: 2s; }
+        .balloon:nth-child(4) { top: 70%; right: 5%; animation-delay: 0.5s; }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @media (max-width: 768px) {
+            .title { font-size: 2.5rem; }
+            .subtitle { font-size: 1.1rem; }
+            .header, .message-section, .gallery { padding: 40px 20px; }
+            .photo-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="decorative-elements">
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎂</div>
+        <div class="balloon">🎁</div>
+        <div class="balloon">🎉</div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="title">🎉Happy Birthday donggle silly kitty🎉</h1>
+            <p class="subtitle"></p>
+        </header>
+
+        <section class="message-section">
+            <div class="birthday-message">
+                오늘은 우리 채현이의 생일이라 어떤 선물을 준비하면 좋을까 고민하다가,
+아무도 받아본 적 없는 특별한 생일 축하를 해주고 싶어서 이렇게 준비해봤어. 🌟<br>
+                우리 채현이가 좋아해줬으면 좋겠어 😊<br>
+                지금 채현이는 캘거리에 있고 나는 한국에 있어서,
+편지도 주기 어렵고 제대로 축하해줄 수 없을 것 같아서
+이렇게 웹사이트로 마음을 전해보려고 해. 재밌지?! 😆<br>
+                이 웹사이트는 1년 뒤에 없어질 예정이라,
+우리 채현이가 잘 간직해줬으면 좋겠어.
+항상 나와 함께해줘서 정말 고맙고,
+이제부터는 더 많은 준비와 공부, 그리고 발전해야 할 날들이 기다리고 있겠지만
+요즘 너가 점점 더 어른스러워지고 어떤 일이든 잘 이겨내는 모습을 보면서
+나는 이제 조금씩 안심이 되기 시작했어.<br>
+물론 혼자서도 잘 해낼 사람이라는 걸 알지만,
+언제든지 도움이 필요하면 꼭 말해줘.
+앞으로도 좋은 일들만 가득할 거야.
+그러니까 항상 건강하고, 씩씩하게 잘 지내자! 💪<br>
+그리고 맨날 간식만 너무 많이 먹지 말고,
+물도 자주 마시고, 밥도 잘 챙겨 먹고,
+피부도 자꾸 긁지 말고!! 🥹
+
+오늘은 가족들이랑 맛있는 것도 많이 먹고,
+행복한 시간 가득 보내길 바라. 우리 채현이 생일 진심으로 축하하고,
+내 여자친구여서 너무 고맙고… 사랑해 💖<br><br>
+                <strong>Happy Kitty's Birthday! 🎂
+                    Today is Kitty's birthday and I was thinking about what kind of gift I could give you.
+Then I thought — why not something truly special, something no one’s ever received before?
+So I made this for you. 🌟
+I really hope kitty likes it 😊
+
+Since you’re in Calgary and I’m all the way in Korea,
+it’s hard to send a letter or celebrate with you properly.
+So I decided to share my heart with you through this little website. Fun, right? 😆
+
+This site will disappear in a year,
+so I hope you’ll keep it somewhere safe as a little memory.
+Thank you for always being with me.
+There will be more things to prepare for, study, and grow through from now on,
+but seeing you mature and handle everything so well lately,
+I’ve started to feel more at ease.
+
+I know you can handle things on your own,
+but if you ever need help, please don’t hesitate to tell me.
+I truly believe only good things are waiting ahead for you.
+So stay healthy, strong, and keep being your amazing self! 💪
+
+And please don’t eat too many snacks all the time,
+drink more water, eat real meals, and please stop scratching your skin! 🥹 (Sorry for the 잔소리 but what else can I do).
+I hope kitty eat something delicious with your family today
+and have the most wonderful time.
+
+Happy birthday, my 채현이.
+Thank you for being my girlfriend… I love you so much 💖
+                </strong>
+            </div>
+        </section>
+
+        <section class="gallery">
+            <h2 class="gallery-title">📸 Our Silly Memories 📸</h2>
+            <div class="photo-grid">
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20221225_142332_IMG_1191.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20221225</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20230129_165804_IMG_2680.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20230129</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20230515_193329_IMG_6060.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20230515</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20230521_191221_IMG_7368.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20230521</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20231111_124047_IMG_3023.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20231111</div>
+                </div>
+                 <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20231112_142445_IMG_4682.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20231112</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20231112_223100_IMG_6706.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20231112</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20231113_110945_IMG_7075.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20231113</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20231113_130430_IMG_7472.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20231113</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20231201_181914_IMG_9419.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20231201</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20231221_171404_IMG_0709.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20231221</div>
+                </div>
+                 <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20231221_182707_IMG_0881.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20231221</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20240404_174417_IMG_3266.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20240404</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20240404_180758_IMG_3405.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20240404</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20240522_004432_IMG_3790.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20240522</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20240527_230259_IMG_5407.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20240527</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20240717_150542_IMG_2349.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20240717</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20240801_095938_IMG_6814.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20240801</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20240801_104730_IMG_6837.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20240801</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20241020_004006_IMG_2356.PNG" alt="첫 번째 사진">
+                    <div class="photo-caption">20241020</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20241219_224831_IMG_3630.PNG" alt="첫 번째 사진">
+                    <div class="photo-caption">20241219</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20250125_140043_IMG_4304.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20250125</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20250125_140102_IMG_4308.JPG" alt="첫 번째 사진">
+                    <div class="photo-caption">20250125</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20250329_181539.jpg" alt="첫 번째 사진">
+                    <div class="photo-caption">20250329</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20250404_185615.jpg" alt="첫 번째 사진">
+                    <div class="photo-caption">20250404</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20250405_121015.jpg" alt="첫 번째 사진">
+                    <div class="photo-caption">20250405</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20250405_121614.jpg" alt="첫 번째 사진">
+                    <div class="photo-caption">20250405</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20250405_145701.jpg" alt="첫 번째 사진">
+                    <div class="photo-caption">20250405</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20250405_145858.jpg" alt="첫 번째 사진">
+                    <div class="photo-caption">20250405</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20250405_151658(0).jpg" alt="첫 번째 사진">
+                    <div class="photo-caption">20250405</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20250405_154200.jpg" alt="첫 번째 사진">
+                    <div class="photo-caption">20250405</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/20250405_181118.jpg" alt="첫 번째 사진">
+                    <div class="photo-caption">20250405</div>
+                </div>
+                <div class="photo-card">
+                    <img class="photo-placeholder" src="images/IMG_0501.jpg" alt="첫 번째 사진">
+                    <div class="photo-caption">20250329</div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            Wishing you a very special day 💝<br>
+            Have a joyful and happy day!!
+        </footer>
+    </div>
+</body>
+</html>
